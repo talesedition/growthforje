@@ -906,10 +906,10 @@ body {
 .process-arrow {
     color: var(--brasa-profunda);
     font-size: 2rem;
-    animation: pulseArrow 2s infinite;
+    animation: pulseArrowHorizontal 2s infinite;
 }
 
-@keyframes pulseArrow {
+@keyframes pulseArrowHorizontal {
     0%, 100% { opacity: 0.5; transform: translateX(0); }
     50% { opacity: 1; transform: translateX(10px); }
 }
@@ -1355,6 +1355,12 @@ body {
     
     .process-arrow {
         transform: rotate(90deg);
+        animation: pulseArrowVertical 2s infinite;
+    }
+    
+    @keyframes pulseArrowVertical {
+        0%, 100% { opacity: 0.5; transform: rotate(90deg) translateY(0); }
+        50% { opacity: 1; transform: rotate(90deg) translateY(10px); }
     }
     
     .hero-stats {
