@@ -17,8 +17,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growth Forje | Pré-Qualificação</title>
-    <meta name="description" content="Pré-qualificação para novos clientes Growth Forje - Gestão de Tráfego e Design">
+    <title>Forge Prime | Pré-Qualificação</title>
+    <meta name="description" content="Pré-qualificação para novos clientes Forge Prime - Gestão de Tráfego e Design">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -327,9 +327,9 @@
                 <path d="M 20 220 L 100 160 L 180 220 Z" fill="url(#fireBaseGradHeader)" opacity="0.9"/>
                 <rect x="70" y="140" width="60" height="60" fill="url(#metalGradHeader)"/>
                 <ellipse cx="100" cy="140" rx="40" ry="12" fill="url(#goldGradHeader)"/>
-                <text x="100" y="118" font-family="Cinzel" font-weight="900" font-size="45" fill="url(#goldGradHeader)" text-anchor="middle">G</text>
+                <text x="100" y="118" font-family="Cinzel" font-weight="900" font-size="45" fill="url(#goldGradHeader)" text-anchor="middle">F</text>
             </svg>
-            <span class="logo-text">GROWTH FORJE</span>
+            <span class="logo-text">FORGE PRIME</span>
         </div>
         <p class="header-subtitle">Forjando Impérios | Pré-Qualificação de Leads</p>
     </header>
@@ -350,8 +350,8 @@
     </div>
 
     <footer class="footer">
-        <div class="footer-brand">GROWTH FORJE</div>
-        <p>Forjado no Fogo | Impérios em Ascensão</p>
+        <div class="footer-brand">FORGE PRIME</div>
+        <p>Forjado na Excelência | Impérios em Ascensão</p>
     </footer>
 
     <script>
@@ -383,7 +383,7 @@ function validarEmail(email) {
 const chatFlow = [
     {
         type: 'bot',
-        text: 'Fala! Sou da Growth Forje. Vou ser direto: pra saber se consigo te ajudar a escalar, preciso de 4 dados. Leva menos de 1 minuto. Bora?',
+        text: 'Fala! Sou da Forge Prime. Vou ser direto: pra saber se consigo te ajudar a escalar, preciso de 4 dados. Leva menos de 1 minuto. Bora?',
         delay: 500
     },
     {
@@ -677,7 +677,7 @@ function sendLeadAjax() {
     formData.append('Faturamento', leadData.faturamento);
     formData.append('Investimento', leadData.investimento);
     formData.append('Data_Hora', new Date().toLocaleString('pt-BR'));
-    formData.append('Origem', 'Site Growth Forje - Pré-Qualificação');
+    formData.append('Origem', 'Site Forge Prime - Pré-Qualificação');
     
     // Configurações obrigatórias do FormSubmit.co
     formData.append('_captcha', 'false');           // Desativa captcha pra não bloquear
@@ -703,7 +703,7 @@ function showFinalScreen() {
     finalScreen.style.display = 'flex';
     finalNome.textContent = leadData.nome || '';
     
-    const texto = `Olá! Sou ${leadData.nome} da ${leadData.empresa}. Acabei de fazer a pré-qualificação no site e quero saber mais sobre a Growth Forje.`;
+    const texto = `Olá! Sou ${leadData.nome} da ${leadData.empresa}. Acabei de fazer a pré-qualificação no site e quero saber mais sobre a Forge Prime.`;
     const encoded = encodeURIComponent(texto);
     whatsappFinalBtn.href = `https://wa.me/5522988231811?text=${encoded}`;
     
