@@ -247,6 +247,120 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===================================
+    // CARROSSEL MOBILE - SEÇÃO NICHOS
+    // ===================================
+    (function initNichesCarousel() {
+        const track = document.getElementById('nichesTrack');
+        const dotsContainer = document.getElementById('nichesDots');
+        if (!track || !dotsContainer) return;
+
+        const items = track.querySelectorAll('.niche-item');
+        if (items.length === 0) return;
+
+        let currentIndex = 0;
+        let autoScrollInterval;
+        let isInteracting = false;
+        let resumeTimeout;
+        const isMobile = () => window.innerWidth <= 768;
+
+        // Cria os dots dinamicamente
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            items.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                    pauseAutoScroll();
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateDots() {
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function goToSlide(index) {
+            if (!isMobile()) return;
+            currentIndex = index;
+            const itemWidth = items[0].offsetWidth + 16; // largura + gap
+            track.scrollTo({
+                left: itemWidth * index,
+                behavior: 'smooth'
+            });
+            updateDots();
+        }
+
+        function nextSlide() {
+            if (!isMobile()) return;
+            currentIndex = (currentIndex + 1) % items.length;
+            goToSlide(currentIndex);
+        }
+
+        function startAutoScroll() {
+            if (!isMobile()) return;
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(() => {
+                if (!isInteracting) {
+                    nextSlide();
+                }
+            }, 3000);
+        }
+
+        function pauseAutoScroll() {
+            isInteracting = true;
+            clearTimeout(resumeTimeout);
+            resumeTimeout = setTimeout(() => {
+                isInteracting = false;
+            }, 5000);
+        }
+
+        // Detecta scroll manual e atualiza o índice atual
+        track.addEventListener('scroll', () => {
+            if (!isMobile()) return;
+            const itemWidth = items[0].offsetWidth + 16;
+            const newIndex = Math.round(track.scrollLeft / itemWidth);
+            if (newIndex !== currentIndex && newIndex >= 0 && newIndex < items.length) {
+                currentIndex = newIndex;
+                updateDots();
+            }
+        });
+
+        // Eventos de touch para pausar auto-scroll
+        track.addEventListener('touchstart', pauseAutoScroll, { passive: true });
+        track.addEventListener('touchmove', pauseAutoScroll, { passive: true });
+        track.addEventListener('touchend', () => {
+            pauseAutoScroll();
+        }, { passive: true });
+
+        // Eventos de mouse para desktop (caso a janela seja redimensionada)
+        track.addEventListener('mousedown', pauseAutoScroll);
+        track.addEventListener('mouseenter', pauseAutoScroll);
+
+        // Inicializa
+        createDots();
+        startAutoScroll();
+
+        // Reinicia ao redimensionar
+        window.addEventListener('resize', () => {
+            if (isMobile()) {
+                createDots();
+                updateDots();
+                startAutoScroll();
+            } else {
+                clearInterval(autoScrollInterval);
+                dotsContainer.innerHTML = '';
+                track.scrollTo({ left: 0, behavior: 'auto' });
+            }
+        });
+    })();
+
+    // ===================================
     // CONSOLE BRANDING
     // ===================================
     console.log('%c🔥 FORGE PRIME 🔥', 'font-size: 24px; font-weight: bold; color: #C9A961;');

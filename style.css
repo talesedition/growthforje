@@ -518,7 +518,8 @@ body {
     background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.3), transparent);
 }
 
-.niches-grid {
+/* Desktop: grid tradicional */
+.niches-carousel-track {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
@@ -568,6 +569,11 @@ body {
     font-size: 0.9rem;
     color: #ccc;
     font-weight: 500;
+}
+
+/* Carousel dots - escondidos no desktop */
+.carousel-dots {
+    display: none;
 }
 
 /* Pain Section */
@@ -1482,7 +1488,7 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .niches-grid {
+    .niches-carousel-track {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1641,13 +1647,74 @@ body {
         width: 100%;
     }
 
-    .niches-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+    /* ========== CARROSSEL MOBILE NICHOS ========== */
+    .niches-carousel-wrapper {
+        position: relative;
+        margin-top: 40px;
+    }
+
+    .niches-carousel-track {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 0 30px;
+        margin-top: 0;
+        /* Esconde scrollbar */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .niches-carousel-track::-webkit-scrollbar {
+        display: none;
     }
 
     .niche-item {
-        padding: 20px 15px;
+        min-width: 75%;
+        max-width: 280px;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        padding: 28px 20px;
+        margin: 0;
+    }
+
+    .niche-item:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .niche-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.4rem;
+    }
+
+    /* Dots de navegação */
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(201, 169, 97, 0.3);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+    }
+
+    .carousel-dot.active {
+        background: var(--ouro-forjado);
+        box-shadow: 0 0 10px rgba(201, 169, 97, 0.5);
+        transform: scale(1.2);
     }
 
     .testimonial-image {
