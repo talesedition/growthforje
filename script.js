@@ -1,5 +1,5 @@
 // ===================================
-// FORGE PRIME - JavaScript
+// FORJE PRIME - JavaScript
 // Forjado na Excelência
 // ===================================
 
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================
     // CONSOLE BRANDING
     // ===================================
-    console.log('%c🔥 FORGE PRIME 🔥', 'font-size: 24px; font-weight: bold; color: #C9A961;');
+    console.log('%c🔥 FORJE PRIME 🔥', 'font-size: 24px; font-weight: bold; color: #C9A961;');
     console.log('%cForjado na Excelência | Impérios em Ascensão', 'font-size: 14px; color: #D4662C;');
     console.log('%cContato: (22) 98823-1811', 'font-size: 12px; color: #888;');
 });
